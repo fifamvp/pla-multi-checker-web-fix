@@ -3,12 +3,13 @@ import json
 import mimetypes
 
 from flask import Flask, render_template, request
-from nxreader import NXReader
-import pla
-from pla.core import get_sprite, teleport_to_spawn
-from pla.data import hisuidex
-from pla.saves import read_research, rolls_from_research
-from pla.data.data_utils import flatten_all_map_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi
+from .nxreader import NXReader
+from . import pla
+from .pla.core import get_sprite, teleport_to_spawn
+from .pla.data import hisuidex
+from .pla.saves import read_research, rolls_from_research
+from .pla.data.data_utils import flatten_all_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi
+from .app import ROOT_PATH
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('application/javascript', '.mjs')
@@ -18,7 +19,7 @@ app = Flask(__name__)
 # Set max size for uploads
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1000 * 1000
 
-config = json.load(open("config.json"))
+config = json.load(open(ROOT_PATH + "config.json"))
 
 if config["SeedCheckOnly"]:
     print("Seed Check only mode! Note: You will not be able to use MMO checker or Distiortion Checker!")
@@ -68,7 +69,7 @@ def settings():
 @app.route('/api/read-mmos', methods=['POST'])
 def read_mmos():
     results = pla.get_all_map_mmos(reader, request.json['research'], False)
-    return { "results": flatten_all_map_mmo_results(results, config.get('FILTER_ON_SERVER', False)) }
+    return { "results": flatten_all_mmo_results(results, config.get('FILTER_ON_SERVER', False)) }
 
 @app.route('/api/read-mmos-one-map', methods=['POST'])
 def read_one_map():
@@ -204,7 +205,7 @@ def read_savefile():
     return { 'error': 'There was a problem reading your save' }
 
 # Legacy routes used by bots
-import app.legacy as legacy
+from .app import legacy as legacy
 app.add_url_rule('/check-mmoseed', view_func=legacy.legacy_get_from_seed)
 app.add_url_rule('/check-alphaseed', view_func=legacy.legacy_get_alpha_from_seed)
 app.add_url_rule('/check-multi-seed', view_func=legacy.legacy_check_multiseed)
