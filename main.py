@@ -8,7 +8,7 @@ from . import pla
 from .pla.core import get_sprite, teleport_to_spawn
 from .pla.data import hisuidex
 from .pla.saves import read_research, rolls_from_research
-from .pla.data.data_utils import flatten_all_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi
+from .pla.data.data_utils import flatten_all_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi, filter_commands, is_shiny
 from .app import ROOT_PATH
 
 mimetypes.add_type('application/javascript', '.js')
@@ -123,7 +123,9 @@ def get_from_seed():
                                   request.json['frspawns'],
                                   request.json['brspawns'])
     print(request.json['research'])
-    return { "results": flatten_map_mmo_results(results, config.get('FILTER_ON_SERVER', False)) }
+    # add "Select Filter:" in MMOS page
+    filter_command = filter_commands.get(request.json['filter'], is_shiny)
+    return { "results": flatten_map_mmo_results(results, config.get('FILTER_ON_SERVER', False), filter_command) }
 
 @app.route('/api/check-alphaseed', methods=['POST'])
 def get_alpha_from_seed():
