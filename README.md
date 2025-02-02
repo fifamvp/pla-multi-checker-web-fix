@@ -14,10 +14,13 @@ Performance may be better (fewer disconnects) if you have [ldn_mitm](https://git
 1. Install requirements ``pip install -r requirements.txt``
 2. Copy-paste ``config.json.template`` and rename to ``config.json``
 3. Edit the ``IP`` field to contain your switch's IP
-4. Run main.py ``python3 ./main.py``
-5. Open ``http://localhost:8100/`` in your browser
+4. Run main.py ``python -m pla-multi-checker-web-fix.main``
+5. Open ``http://localhost:8200/`` in your browser
 6. Select a map index with your desired map, or choose "check all MMOs" to read all MMOs from town.
 7. There are filter options to limit your output.
+
+> **Note**
+> For step 4, there were lots of 'Import Error' due to relative path. (Former Command: ~~``python3 ./main.py``~~)
 
 ## Warning
 I won't be liable if your Switch get damaged or banned. Use at your own risk.
