@@ -10,6 +10,14 @@ PyNXReader is a fork of PyNXBot by [wwwwwwzx](https://github.com/wwwwwwzx) so ad
 
 Performance may be better (fewer disconnects) if you have [ldn_mitm](https://github.com/spacemeowx2/ldn_mitm) installed.
 
+# Before How to run:
+This project relies on https://github.com/Lincoln-LM/numba_pokemon_prngs.
+#### Install numba_pokemon_prngs by command:
+**For github user:**
+``pip install "numba-pokemon-prngs[numba] @ git+https://github.com/Lincoln-LM/numba_pokemon_prngs"``
+**For gitee user:**
+``pip install "numba-pokemon-prngs[numba] @ git+https://gitee.com/fifamvp/numba_pokemon_prngs"``
+
 # How to run:
 1. Install requirements ``pip install -r requirements.txt``
 2. Copy-paste ``config.json.template`` and rename to ``config.json``
