@@ -6,7 +6,7 @@ class AppMode(Enum):
     DEV = "DEV"
 
 _root = {
-    AppMode.WEB: '/home/pla-multi-checker-web-fix/static/',
+    AppMode.WEB: '/home/pla-multi-checker-web-fix/',
     AppMode.LOCAL: './pla-multi-checker-web-fix/',
     AppMode.DEV: './pla-multi-checker-web-fix/'
 }
