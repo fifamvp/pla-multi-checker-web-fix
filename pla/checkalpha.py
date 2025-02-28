@@ -1,5 +1,5 @@
 import json
-from ..app import RESOURCE_PATH
+from app import RESOURCE_PATH
 from .core import generate_from_seed, get_sprite
 from .data import pokedex, natures
 from .rng import XOROSHIRO

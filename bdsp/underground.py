@@ -2,9 +2,9 @@ import json
 import struct
 import sys
 from .bdsp_ug_generator_py import generate_results, FilterPy
-from ..app import RESOURCE_PATH
-from ..pla.data import natures
-from ..pla.core import get_bdsp_sprite
+from app import RESOURCE_PATH
+from pla.data import natures
+from pla.core import get_bdsp_sprite
 from .filters import compare_all_ivs
 
 with open(RESOURCE_PATH + "resources/text_species_en.txt",encoding="utf-8") as text_species:

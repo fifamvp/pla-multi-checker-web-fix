@@ -1,6 +1,6 @@
 import numpy as np
 from functools import reduce
-from ..pla.rng import XOROSHIRO
+from pla.rng import XOROSHIRO
 
 def get_rotl(n,size=64):
     rotl = np.identity(64,dtype="uint8")

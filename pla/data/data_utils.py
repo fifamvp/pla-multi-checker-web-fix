@@ -1,6 +1,6 @@
 import json
 from ..filters import *
-from ...bdsp.filters import *
+from bdsp.filters import *
 
 filter_commands = {
     "is_shiny": is_shiny,

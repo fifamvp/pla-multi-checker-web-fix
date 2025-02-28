@@ -3,13 +3,13 @@ import json
 import mimetypes
 
 from flask import Flask, render_template, request
-from .nxreader import NXReader
-from . import pla
-from .pla.core import get_sprite, teleport_to_spawn
-from .pla.data import hisuidex
-from .pla.saves import read_research, rolls_from_research
-from .pla.data.data_utils import flatten_all_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi, filter_commands, is_shiny
-from .app import ROOT_PATH
+from nxreader import NXReader
+import pla
+from pla.core import get_sprite, teleport_to_spawn
+from pla.data import hisuidex
+from pla.saves import read_research, rolls_from_research
+from pla.data.data_utils import flatten_all_mmo_results, flatten_map_mmo_results, flatten_normal_outbreaks, flatten_multi, filter_commands, is_shiny
+from app import ROOT_PATH
 
 mimetypes.add_type('application/javascript', '.js')
 mimetypes.add_type('application/javascript', '.mjs')
@@ -207,7 +207,7 @@ def read_savefile():
     return { 'error': 'There was a problem reading your save' }
 
 # Legacy routes used by bots
-from .app import legacy as legacy
+from app import legacy as legacy
 app.add_url_rule('/check-mmoseed', view_func=legacy.legacy_get_from_seed)
 app.add_url_rule('/check-alphaseed', view_func=legacy.legacy_get_alpha_from_seed)
 app.add_url_rule('/check-multi-seed', view_func=legacy.legacy_check_multiseed)

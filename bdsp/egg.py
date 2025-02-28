@@ -1,7 +1,7 @@
 from .core import generate_egg
 from .core.generate_bdsp import generate_egg
-from ..pla.rng import Xorshift
-from ..pla.data import natures
+from pla.rng import Xorshift
+from pla.data import natures
 from .filters import compare_all_ivs
 from .core import Daycare
 

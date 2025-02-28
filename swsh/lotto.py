@@ -1,4 +1,4 @@
-from ..pla.rng import XOROSHIRO
+from pla.rng import XOROSHIRO
 
 def generate(_rng: XOROSHIRO, npc_count=6):
 

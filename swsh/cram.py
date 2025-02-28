@@ -1,4 +1,4 @@
-from ..pla.rng import XOROSHIRO
+from pla.rng import XOROSHIRO
 
 def filt(result, filter):
     if filter['isSafariSport'] and not result['isSafariSport']:

@@ -1,4 +1,4 @@
-from ...pla.data import natures
+from pla.data import natures
 
 class Daycare:
 

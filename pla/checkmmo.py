@@ -1,7 +1,7 @@
 import json
 import struct
 from datetime import datetime
-from ..app import RESOURCE_PATH
+from app import RESOURCE_PATH
 from .core import BASE_ROLLS_MMOS, generate_from_seed, get_rolls, get_sprite
 from .data import pokedex, natures
 from .rng import XOROSHIRO
