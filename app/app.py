@@ -14,7 +14,7 @@ if 'APP_MODE' not in config:
 _root = {
     AppMode.WEB: config['WEB_PATH'] + 'pla-multi-checker-web-fix/',
     AppMode.LOCAL: './pla-multi-checker-web-fix/',
-    AppMode.DEV: './pla-multi-checker-web-fix/'
+    AppMode.DEV: './'
 }
 
 
