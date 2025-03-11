@@ -164,7 +164,9 @@ def check_multiseed():
                                            request.json['maxalive'],
                                            request.json['maxdepth'],
                                            request.json['isnight'])
-    return { "results": flatten_multi(results, config.get('FILTER_ON_SERVER', False)) }
+     # add "Select Filter:" in MULTISEED page
+    filter_command = filter_commands.get(request.json['filter'], is_shiny)
+    return { "results": flatten_multi(results, config.get('FILTER_ON_SERVER', False), filter_command) }
 
 @app.route('/api/hisuidex')
 def pokemon():
