@@ -20,7 +20,7 @@
 <br>
 
 # 刷闪演示视频：
-https://www.bilibili.com/video/BV1CsNceVE5B/
+https://www.bilibili.com/video/BV1Lu9vYAEVE/
 （有疑问可在该视频下留言）
 
-[![刷闪](./misc/video01.png)](https://www.bilibili.com/video/BV1CsNceVE5B/)
+[![刷闪](./misc/video01.png)](https://www.bilibili.com/video/BV1Lu9vYAEVE/)
