@@ -766,7 +766,7 @@
 		"allspecies": []
 	},
 	{
-		"species": "Alpha MimeJr.",
+		"species": "Alpha Mime Jr.",
 		"hash": "0x1F293112F1402220",
 		"parent_id": "0x4418CAFB9AE0F8F7",
 		"allspecies": []
@@ -2388,11 +2388,11 @@
 		]
 	},
 	{
-		"species": "MimeJr.",
+		"species": "Mime Jr.",
 		"hash": "0x4418CAFB9AE0F8F7",
 		"parent_id": "0",
 		"allspecies": [
-			"MimeJr.",
+			"Mime Jr.",
 			"Mr.Mime"
 		]
 	},
