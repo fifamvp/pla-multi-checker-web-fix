@@ -15,6 +15,13 @@
 	<script type="module">
 	</script>
 	<script type="module" src="static/js/chosen.jquery.min.mjs"></script>
+    <script type="module">
+        import { addLanguageSwitchCallback, initLanguageSwitcher, getLocText, getPokemonName } from "./static/js/modules/localization.mjs";
+        window.addLanguageSwitchCallback = addLanguageSwitchCallback
+        window.initLanguageSwitcher = initLanguageSwitcher
+        window.getLocText = getLocText
+        window.getPokemonName = getPokemonName
+    </script>
 	<script type="module">
 	</script>
     {% block head %}
@@ -86,6 +93,12 @@
 		<h1 class="pla-heading"><span class="pla-heading-highlight">PLA</span> {{ self.title() }}</h1>
 		{% endif %}
 
+        <!-- <button class="language-toggle" id="language-toggle" title="Toggles language" aria-live="light"> -->
+            <select id="languageSwitcher">
+                <option value="en">English</option>
+                <option value="chs">中文</option>
+            </select>
+        <!-- </button> -->
         <button class="theme-toggle" id="theme-toggle" title="Toggles light and dark mode" aria-live="light">
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <g class="theme-toggle-light hidden">
@@ -156,6 +169,15 @@
     
     {% block script %}
     {% endblock %}
+
+    <script>
+    $(document).ready(function(e){
+        var a = function(){
+            console.log("callback++");
+        };
+        console.log('call initLanguageSwitcher')
+        initLanguageSwitcher(a);
+    })</script>
 </body%>
 
 </html>

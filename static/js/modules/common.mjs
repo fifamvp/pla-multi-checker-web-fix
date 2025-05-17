@@ -1,3 +1,8 @@
+import {
+  getLocText,
+  getPokemonName
+} from "./localization.mjs";
+
 // Maps
 export const DEFAULT_MAP = "obsidianfieldlands";
 
@@ -493,9 +498,15 @@ const genderStrings = {
   genderless: "Genderless <i class='fa-solid fa-genderless'/>",
 };
 
+function normalizeGenederString(originalString) {
+  let arr = originalString.split(' ');
+  arr[0] = getLocText(arr[0]);
+  return arr.join(' ');
+}
+
 export function showPokemonGender(resultContainer, gender) {
   resultContainer.querySelector("[data-pla-results-gender]").innerHTML =
-    genderStrings[gender];
+    normalizeGenederString(genderStrings[gender]);
 }
 
 export function showPokemonInformation(resultContainer, result) {
@@ -504,14 +515,14 @@ export function showPokemonInformation(resultContainer, result) {
   resultContainer.querySelector(".pla-results-sprite").appendChild(sprite);
 
   resultContainer.querySelector("[data-pla-results-species]").textContent =
-    result.alpha ? "Alpha " + result.species : result.species;
+    getPokemonName(result.alpha ? "Alpha " + result.species : result.species);
   resultContainer.querySelector("[data-pla-results-nature]").textContent =
-    result.nature;
+    getLocText(result.nature);
   resultContainer.querySelector("[data-pla-results-rolls]").textContent =
     result.rolls;
 
   resultContainer.querySelector("[data-pla-results-gender]").innerHTML =
-    genderStrings[result.gender];
+    normalizeGenederString(genderStrings[result.gender]);
 
   let resultShiny = resultContainer.querySelector("[data-pla-results-shiny]");
   let sparkle = "";
@@ -524,13 +535,13 @@ export function showPokemonInformation(resultContainer, result) {
   sparklesprite.style.cssText =
     "pull-left;display:inline-block;margin-left:0px;";
   if (result.shiny && result.square) {
-    sparkle = "Square Shiny!";
+    sparkle = getLocText("Square Shiny!");
     sparklesprite.src = "static/img/square.png";
   } else if (result.shiny) {
     sparklesprite.src = "static/img/shiny.png";
-    sparkle = "Shiny!";
+    sparkle = getLocText("Shiny!");
   } else {
-    sparkle = "Not Shiny";
+    sparkle = getLocText("Not Shiny");
   }
   resultContainer
     .querySelector("[data-pla-results-shinysprite]")
@@ -540,7 +551,7 @@ export function showPokemonInformation(resultContainer, result) {
   resultShiny.classList.toggle("pla-result-false", !result.shiny);
 
   let resultAlpha = resultContainer.querySelector("[data-pla-results-alpha]");
-  resultAlpha.textContent = result.alpha ? "Alpha!" : "Not Alpha";
+  resultAlpha.textContent = result.alpha ? getLocText("Alpha!") : getLocText("Not Alpha");
   resultAlpha.classList.toggle("pla-result-true", result.alpha);
   resultAlpha.classList.toggle("pla-result-false", !result.alpha);
 }

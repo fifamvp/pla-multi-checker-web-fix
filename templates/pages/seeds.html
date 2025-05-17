@@ -18,10 +18,10 @@
 		function get_json_data(id, parent_id) {
 			var html_code = '';
 			$.getJSON('static/resources/seedhashes.json', function(data) {
-				html_code += '<option value="">Select Species</option>';
+				html_code += '<option value="">' + getLocText('Select Species') + '</option>';
 				$.each(data, function(key, value) {
 					if (value.parent_id == parent_id) {
-						html_code += '<option value="' + value.hash + '">' + value.species + '</option>';
+						html_code += '<option value="' + value.hash + '">' + getPokemonName(value.species) + '</option>';
 					}
 				});
 				$('#' + id).html(html_code);
@@ -29,6 +29,11 @@
 			});
 		}
 		get_json_data('frpokemon',0);
+
+        addLanguageSwitchCallback(function(e){
+            get_json_data('frpokemon',0);
+            get_json_data('brpokemon',0);
+        });
 
 		$(document).on('change', '#frpokemon', function() {
 			var brand_id = $(this).val();
@@ -106,7 +111,7 @@
         <div class="pla-control">
             <label for="frpokemon">First Round Pokemon</label>
             <select name="frpokemon" id="frpokemon" class="form-control chosen-select-single">
-                <option value="">Select Pokemon</option>
+                <option value="" data-i18n="Select Pokemon">Select Pokemon</option>
             </select>
         </div>
 
@@ -126,7 +131,7 @@
         <div class="pla-control" data-pla-bonus-round>
             <label for="brpokemon">Bonus Round Pokemon</label>
             <select name="brpokemon" id="brpokemon" class="form-control chosen-select-single">
-                <option value="">Select Pokemon</option>
+                <option value="" data-i18n="Select Pokemon">Select Pokemon</option>
             </select>
         </div>
 
@@ -185,7 +190,7 @@
         </div>
 		
 		<div class="pla-control-spaced">
-            <label for="mmoDefaultRouteFilter">Results Filter: Show Multiple Shiny Paths Only</label>
+            <label for="mmoMultiFilter">Results Filter: Show Multiple Shiny Paths Only</label>
             <input type="checkbox" id="mmoMultiFilter">
         </div>
     </section>
@@ -201,20 +206,20 @@
             </ul>
 
             <ul class="pla-results-ul">
-                <li><span class="pla-results-label">Shiny:</span> <span class="float -left" data-pla-results-shinysprite> <span class="float -right" data-pla-results-shiny></span></span></li>
-                <li><span class="pla-results-label">Alpha:</span> <span data-pla-results-alpha></span></li>
+                <li><span class="pla-results-label" data-i18n="Shiny">Shiny:</span> <span class="float -left" data-pla-results-shinysprite> <span class="float -right" data-pla-results-shiny></span></span></li>
+                <li><span class="pla-results-label" data-i18n="Alpha">Alpha:</span> <span data-pla-results-alpha></span></li>
             </ul>
 
 			<ul class="pla-results-ul">
 				<li><span class="pla-results-label"><span data-pla-results-location></span></span></li>
 			</ul>
 			<ul class="pla-results-ul">
-				<span class="pla-results-label">Chained With: <span data-pla-info-chains></span></span>
+				<span class="pla-results-label" data-i18n="Chained With">Chained With: <span data-pla-info-chains></span></span>
 			</ul>
             <ul class="pla-results-ul">
-                <li><span class="pla-results-label">Nature:</span> <span data-pla-results-nature></span></li>
-                <li><span class="pla-results-label">Gender:</span> <span data-pla-results-gender></span></li>
-                <li><span class="pla-results-label">Rolls:</span> <span data-pla-results-rolls></span></li>
+                <li><span class="pla-results-label" data-i18n="Nature">Nature:</span> <span data-pla-results-nature></span></li>
+                <li><span class="pla-results-label" data-i18n="Gender">Gender:</span> <span data-pla-results-gender></span></li>
+                <li><span class="pla-results-label" data-i18n="Rolls">Rolls:</span> <span data-pla-results-rolls></span></li>
             </ul>
 
             <!--<ul class="pla-results-ul">

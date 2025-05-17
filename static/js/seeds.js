@@ -10,6 +10,11 @@ import {
   initializeApp,
 } from "./modules/common.mjs";
 
+import {
+  getLocText,
+  translateNode,
+} from "./modules/localization.mjs";
+
 const resultTemplate = document.querySelector("[data-pla-results-template]");
 const resultsArea = document.querySelector("[data-pla-results]");
 
@@ -196,25 +201,38 @@ function showFilteredResults() {
   );
 
   if (filteredResults.length > 0) {
-    resultsArea.innerHTML =
-      "<h3><section class='pla-section-results' flow>D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.</section></h3>";
+    // resultsArea.innerHTML =
+    //   "<h3><section class='pla-section-results' flow>D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.</section></h3>";
+    resultsArea.innerHTML = 
+      "<h3><section class='pla-section-results' flow>" + getLocText("DespawnDesc") + "</section></h3>";
     filteredResults.forEach((result) => showResult(result));
   } else {
     showNoResultsFound();
   }
 }
 
+function translateIndex(originalIndex) {
+  let targetReplaced = ['First Round Path','Clear Round','Revisit','Bonus Path','Bonus','Initial Spawn']
+  let newString = originalIndex;
+  for (let beReplaced of targetReplaced){
+    newString = newString.replaceAll(beReplaced, getLocText(beReplaced))
+  }
+  return newString
+}
+
 function showResult(result) {
   const resultContainer = resultTemplate.content.cloneNode(true);
+  // force translate here
+  result.index = translateIndex(result.index);
 
   let indexprefix = "";
   let chainprefix = "";
   if (result.chains.length == 0) {
-    indexprefix = "Single Shiny Path: <br>" + result.index;
-    chainprefix = "No Additional Shinies On Path";
+    indexprefix = getLocText("Single Shiny Path") + ": <br>" + result.index;
+    chainprefix = getLocText("No Additional Shinies On Path");
   } else {
     indexprefix =
-      "Multiple Shiny Path (Complete for more than one Shiny):  <br>" +
+      getLocText("Multiple Shiny Path (Complete for more than one Shiny)") + ":  <br>" +
       result.index;
     chainprefix = "<br>" + result.chains;
     result.multi = true;
@@ -226,6 +244,8 @@ function showResult(result) {
 
   showPokemonInformation(resultContainer, result);
   showPokemonIVs(resultContainer, result);
+
+  translateNode(resultContainer);
 
   resultsArea.appendChild(resultContainer);
 }
