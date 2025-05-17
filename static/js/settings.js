@@ -7,6 +7,11 @@ import {
   initializeApp,
 } from "./modules/common.mjs";
 
+import {
+  getPokemonName,
+  translateNode,
+} from "./modules/localization.mjs";
+
 // valid PLA save file sizes
 const VALID_FILESIZES = [0x136dde, 0x13ad06];
 
@@ -114,7 +119,7 @@ function initializePage() {
 
 function createPokemonRow(pokemon) {
   const row = rowTemplate.content.cloneNode(true);
-  row.querySelector(".pla-research-row-name").textContent = pokemon.species;
+  row.querySelector(".pla-research-row-name").textContent = getPokemonName(pokemon.species);
   row.querySelector(
     "[data-pla-research-row-img]"
   ).src = `/static/img/sprite/${pokemon.sprite}`;
@@ -130,6 +135,7 @@ function createPokemonRow(pokemon) {
 
   researchRows.set(pokemon.species, row.querySelector(".pla-research-row"));
   researchRadios.set(pokemon.species, [radios[0], radios[1], radios[2]]);
+  translateNode(row);
   researchTable.appendChild(row);
 }
 

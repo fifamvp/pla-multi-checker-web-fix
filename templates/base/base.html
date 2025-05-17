@@ -22,6 +22,16 @@
         window.getLocText = getLocText
         window.getPokemonName = getPokemonName
     </script>
+    <script type="text/javascript" src="static/js/jquery.min.mjs"></script>
+    <script>
+    $(document).ready(function(e){
+        var a = function(){
+            console.log("callback++");
+        };
+        console.log('call initLanguageSwitcher')
+        initLanguageSwitcher(a);
+    })
+    </script>
 	<script type="module">
 	</script>
     {% block head %}
@@ -170,14 +180,7 @@
     {% block script %}
     {% endblock %}
 
-    <script>
-    $(document).ready(function(e){
-        var a = function(){
-            console.log("callback++");
-        };
-        console.log('call initLanguageSwitcher')
-        initLanguageSwitcher(a);
-    })</script>
+
 </body%>
 
 </html>

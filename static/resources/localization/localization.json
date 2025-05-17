@@ -5,6 +5,7 @@
     "Multis": { "chs": "多只生成器" },
     "Wiki": { "chs": "维基"},
     "Settings": { "chs": "设置" },
+    "Input Seed": { "chs": "输入seed" },
     "normalcheckbox": { "chs": "普通大量", "en": "Normal Outbreaks Only" },
     "frspawns": { "chs": "第一轮生成数量", "en": "First Round Spawns" },
     "frpokemon": { "chs": "第一轮宝可梦", "en": "First Round Pokemon" },
@@ -21,7 +22,7 @@
     "mmoAlphaFilter": { "chs": "结果筛选：只显示头目", "en": "Results Filter: Alpha Only" },
     "mmoDefaultRouteFilter": { "chs": "只显示默认路径", "en": "Results Filter: Show Default Paths Only" },
     "mmoMultiFilter": { "chs": "只显示多闪光路径", "en": "Results Filter: Show Multiple Shiny Paths Only" },
-    "Select Species": { "chs": "选择种类" },
+    "Select Species": { "chs": "选择宝可梦" },
     "Select Pokemon": { "chs": "选择宝可梦" },
     "Single Shiny Path": { "chs": "单一闪光的路径" },
     "No Additional Shinies On Path": { "chs": "路径中没有其他闪光" },
@@ -73,5 +74,15 @@
     "Not Shiny": { "chs": "非闪光" },
     "Alpha!": { "chs": "头目" },
     "Not Alpha": { "chs": "非头目" },
-    "DespawnDesc": { "chs": "D = 消除. 通过和多只（攻击性）宝可梦战斗或者惊吓（胆小）宝可梦来同时消除多只", "en": "D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon."}
+    "DespawnDesc": { "chs": "D = 消除. 通过和多只（攻击性）宝可梦战斗或者惊吓（胆小）宝可梦来同时消除多只", "en": "D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon."},
+    "SetLevelToAll": { "chs": "给所有宝可梦设置研究等级:", "en": "Set the research level for all Pokémon to:" },
+    "Base Level": { "chs": "基础等级" },
+    "Level 10": { "chs": "等级 10" },
+    "Perfect": { "chs": "完美" },
+    "General Settings": { "chs": "通用设置" },
+    "pla-research-shinycharm": { "chs": "是否拥有闪耀护符", "en": "Do you have the Shiny Charm?" },
+    "Research Levels": { "chs": "研究等级" },
+    "ResearchLevelDesc": { "chs": "你可以一次性或分别设置研究等级.", "en": "You can set the Pokédex research level for all Pokémon at once, set them individually or read them from a save file." },
+    "Basic": { "chs": "基础" },
+    "Filter Pokémon...": { "chs": "过滤宝可梦..." }
 }

@@ -6,22 +6,30 @@ const pokemonNames = {}
 const strLang = 'preferredLang'
 let currentLang = localStorage.getItem(strLang) || 'en';
 let callbacks = []
+let bLocalizationLoaded = false
 console.log('localization.mjs loaded')
 
-$.getJSON('static/resources/localization/localization.json', function (data) {
-    console.log('load localization file');
+function sleep(time){
+ return new Promise((resolve) => setTimeout(resolve, time));
+}
 
-    $.each(data, function (key, value) {
-        let en_text = key;
-        if ('en' in value){
-            en_text = value['en']
-        }
-        translations['en'][key] = en_text;
-        translations['chs'][key] = value['chs'];
+function initLocalizationFile() {
+    $.getJSON('static/resources/localization/localization.json', function (data) {
+        console.log('load localization file');
 
-        // console.log(key + ' : ' + value)
+        $.each(data, function (key, value) {
+            let en_text = key;
+            if ('en' in value){
+                en_text = value['en']
+            }
+            translations['en'][key] = en_text;
+            translations['chs'][key] = value['chs'];
+
+            // console.log(key + ' : ' + value)
+        });
+        bLocalizationLoaded = true;
     });
-});
+}
 
 function initPokemonNames() {
     $.getJSON('static/resources/localization/allpokemons.json', function (data) {
@@ -34,7 +42,12 @@ function initPokemonNames() {
     });
 }
 
-initPokemonNames();
+function initLocalizationModule() {
+    initLocalizationFile();
+    initPokemonNames();
+}
+
+initLocalizationModule();
 
 function getLocTextInternal(originalString) {
     if (originalString in translations[currentLang]) {
@@ -45,10 +58,16 @@ function getLocTextInternal(originalString) {
 }
 
 function getLocTextWithExtraMarks(key, originalString){
-    let strInTrans = getLocTextInternal(key);
+    let searchKey = key;
+    // console.log('key ' + key + ', ' + originalString)
+    if (key.length == 0){
+        searchKey = originalString;
+    }
 
-    if (originalString.startsWith(key) && originalString.length > key.length){
-        let additionStr = originalString.substring(key.length);
+    let strInTrans = getLocTextInternal(searchKey);
+
+    if (originalString.startsWith(searchKey) && originalString.length > searchKey.length){
+        let additionStr = originalString.substring(searchKey.length);
         return strInTrans + additionStr
     }
 
@@ -108,6 +127,14 @@ function updateContent(lang = 'en') {
             })
         }
     });
+
+    document.querySelectorAll('[placeholder]').forEach(element => {
+        const key = element.getAttribute('placeholder');
+        const res = getLocText(key);
+        if (res != key){
+            element.setAttribute('placeholder', res);
+        }
+    });
 }
 
 function switchToNewLang(lang = 'en') {
@@ -135,6 +162,20 @@ export function addLanguageSwitchCallback(callback) {
     callbacks.push(callback);
 }
 
+async function waitForUpdateContent() {
+    // wait until the localizaion file has been loaded
+    let waitTime = 0;
+    while (!bLocalizationLoaded && waitTime < 5000){
+        console.log('localization file is not ready.')
+        waitTime+=100;
+        await sleep(100);
+    }
+    if (waitTime >= 5000){
+        console.warn('waitForUpdateContent timeout.')
+    }
+    updateContent(currentLang);
+}
+
 export function initLanguageSwitcher(callback) {
     let switcher = document.getElementById('languageSwitcher');
     if (switcher) {
@@ -143,7 +184,9 @@ export function initLanguageSwitcher(callback) {
             switchToNewLang(e.target.value);
         });
     }
-    updateContent(currentLang);
+
+    waitForUpdateContent();
+    
     callbacks.push(callback);
 }
 
