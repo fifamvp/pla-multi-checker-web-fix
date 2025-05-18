@@ -53,13 +53,13 @@ function getLocTextInternal(originalString) {
     if (originalString in translations[currentLang]) {
         return translations[currentLang][originalString]
     }
-
+    //console.log(originalString + ' is not in localizaion.')
     return originalString
 }
 
 function getLocTextWithExtraMarks(key, originalString){
     let searchKey = key;
-    // console.log('key ' + key + ', ' + originalString)
+    //console.log('key ' + key + ', ' + originalString)
     if (key.length == 0){
         searchKey = originalString;
     }
@@ -194,10 +194,11 @@ export function getLocText(originalString) {
     return getLocTextInternal(originalString)
 }
 
-export function getPokemonName(originalString) {
-    if (originalString in pokemonNames) {
-        return pokemonNames[originalString][currentLang]
-    }
+function handleSpecialPokemonName(originalString) {
+    // possibilities:
+    // AlphaPikachu
+    // Alpha Pikachu
+    // Alpha XXX-1
 
     let strings = originalString.split(/-| /);
     let result = '';
@@ -211,7 +212,30 @@ export function getPokemonName(originalString) {
         result += (!isNaN(loc) ? '-':' ') + loc;
     });
 
-    result = result.trim()
+    result = result.trim();
+    return result;
+}
+
+export function getPokemonName(originalString) {
+    if (originalString in pokemonNames) {
+        return pokemonNames[originalString][currentLang];
+    }
+
+    let result = '';
+    if (originalString.startsWith('Alpha') && originalString[5] !== ' '){
+        let poName = originalString.substring(5);
+        let normalName = ''
+        if (poName in pokemonNames) {
+            normalName = pokemonNames[poName][currentLang];
+        }
+        else{
+            normalName = handleSpecialPokemonName(poName);
+        }
+        result = getLocText('Alpha') + normalName;
+    }
+    else{
+        result = handleSpecialPokemonName(originalString);
+    }
 
     return result !== '' ?  result : originalString;
 }

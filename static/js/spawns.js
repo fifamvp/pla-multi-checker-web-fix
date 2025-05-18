@@ -12,6 +12,11 @@ import {
   initializeApp,
 } from "./modules/common.mjs";
 
+import {
+  getPokemonName,
+  translateNode,
+} from "./modules/localization.mjs";
+
 const resultTemplate = document.querySelector("[data-pla-results-template]");
 const resultsArea = document.querySelector("[data-pla-results]");
 const mapSpawnsArea = document.querySelector("[data-pla-info-spawner]");
@@ -85,7 +90,7 @@ function setSpawners(event) {
             breakloop = true;
             $.each(species, function (pokemon, slot) {
               let locListItem = document.createElement("li");
-              locListItem.textContent = pokemon;
+              locListItem.textContent = getPokemonName(pokemon);
               mapSpawnsArea.appendChild(locListItem);
             });
           } else if (
@@ -100,7 +105,7 @@ function setSpawners(event) {
               console.log(pokemon);
               console.log(slot);
               let locListItem = document.createElement("li");
-              locListItem.textContent = pokemon;
+              locListItem.textContent = getPokemonName(pokemon);
               console.log("loclistitem innertext");
               console.log(locListItem.innerText);
               mapSpawnsArea.appendChild(locListItem);
@@ -158,6 +163,8 @@ function showResult(result) {
     resultGender = "MALE";
   }
   showPokemonGender(resultContainer, resultGender);
+
+  translateNode(resultContainer);
 
   resultsArea.appendChild(resultContainer);
 }

@@ -12,11 +12,11 @@
 			console.log(mapname)
 			var html_code = '';
 			$.getJSON('static/resources/speciesbymap.json', function(data) {
-				html_code += '<option value="">Select Species</option>';
+				html_code += '<option value="">' + getLocText('Select Species') + '</option>';
 				$.each(data, function(key,value) {
 					if (key == mapname) {
 						$.each(value, function(index, species) {
-						html_code += '<option value="' + species + '">' + species + '</option>';
+						html_code += '<option value="' + species + '">' + getPokemonName(species) + '</option>';
 						});
 					}
 				});
@@ -27,12 +27,12 @@
 		function get_species_spawners(species,mapname) {
 			var html_code = '';
 			$.getJSON('static/resources/' + mapname + '_spawnerbyspecies.json', function(data) {
-				html_code += '<option value="">Select Spawner:</option>';
+				html_code += '<option value="">' + getLocText('Select Spawner') + ':</option>';
 				$.each(data, function(key,value) {
 					if (key == species){
 						var i = 1;
 						$.each(value, function(index, spawnpoint) {
-							html_code += '<option value="' + spawnpoint + '"> Spawner ' + i + '</option>';
+							html_code += '<option value="' + spawnpoint + '">' + getLocText('Spawner') + ' ' + i + '</option>';
 							i++;
 						});
 					}
@@ -81,13 +81,13 @@
 		</div>
 
 		<div class="pla-control">
-			<label for="rolls">Shiny Rolls</label>
+			<label for="rolls" data-i18n="">Shiny Rolls</label>
 			<select id="rolls">
-				<option value="1">Default</option>
-				<option value="2">Dex Research 10</option>
-				<option value="4">Dex Research Perfect</option>
-				<option value="5">Shiny Charm</option>
-				<option value="7">Shiny Charm + Perfect</option>
+				<option value="1" data-i18n="">Default</option>
+				<option value="2" data-i18n="">Dex Research 10</option>
+				<option value="4" data-i18n="">Dex Research Perfect</option>
+				<option value="5" data-i18n="">Shiny Charm</option>
+				<option value="7" data-i18n="">Shiny Charm + Perfect</option>
 			</select>
 		</div>
 
@@ -102,7 +102,7 @@
 		</div>
 
 		<div class="pla-control">
-			<label for="gender">Gender Ratio</label>
+			<label for="gender" data-i18n="">Gender Ratio</label>
 			<select id="gender">
 				<option value="31">1 &#9792; : 7 &#9794;</option>
 				<option value="63">1 &#9792; : 4 &#9794;</option>
@@ -110,54 +110,54 @@
 				<option value="191">3 &#9792; : 1 &#9794;</option>
 				<option value="0"> &#9794; Only</option>
 				<option value="254"> &#9792; Only</option>
-				<option value="-1"> Genderless</option>
+				<option value="-1" data-i18n="Genderless"> Genderless</option>
 			</select>
 		</div>
 
 		<div class="pla-control-actions">
-			<button class="pla-button pla-button-action" id="pla-button-checkalphaadv">Find Shiny Advances</button>
+			<button class="pla-button pla-button-action" id="pla-button-checkalphaadv" data-i18n="Find Shiny Advances">Find Shiny Advances</button>
 		</div>
 	</section>
 
 	<section class="pla-section-expandable">
-		<button type="button" class="pla-button expandable-control">Advanced Options</button>
+		<button type="button" class="pla-button expandable-control" data-i18n="">Advanced Options</button>
 		
 		<div class="expandable">
 			<div class="pla-control">
 				<label for="speciesmap">Map:</label>
 				<select name="speciesmap" id="speciesmap" class="form-control">
-					<option value="">Select Map...</option>
-					<option value="AlabasterIcelands">Alabaster Icelands</option>
-					<option value="CoronetHighlands">Coronet Highlands</option>
-					<option value="CobaltCoastlands">Cobalt Coastlands</option>
-					<option value="CrimsonMirelands">Crimson Mirelands</option>
-					<option value="ObsidianFieldlands">Obsidian Fieldlands</option>
+					<option value="" data-i18n="">Select Map...</option>
+					<option value="AlabasterIcelands" data-i18n="">Alabaster Icelands</option>
+					<option value="CoronetHighlands" data-i18n="">Coronet Highlands</option>
+					<option value="CobaltCoastlands" data-i18n="">Cobalt Coastlands</option>
+					<option value="CrimsonMirelands" data-i18n="">Crimson Mirelands</option>
+					<option value="ObsidianFieldlands" data-i18n="">Obsidian Fieldlands</option>
 				</select>
 			</div>
 
 			<div class="pla-control">
-				<label for="speciesnames">Species:</label>
+				<label for="speciesnames" data-i18n="">Species:</label>
 				<select name="speciesnames" id="speciesnames" class="form-control">
-					<option value="">Select Pokemon</option>
+					<option value="" data-i18n="">Select Pokemon</option>
 				</select>
 			</div>
 			
 			<div class="pla-control">
 				<label for="spawnernames">Species Spawner:</label>
 				<select name="spawnernames" id="spawnernames" class="form-control">
-					<option value="">Select Spawner</option>
+					<option value="" data-i18n="">Select Spawner</option>
 				</select>
 			</div>
 
 			<div class="pla-control-spaced">
-				<label for="daynightcheck">Is Nighttime?</label>
+				<label for="daynightcheck" data-i18n="">Is Nighttime?</label>
 				<input type="checkbox" id="daynightcheck">
 			</div>
 		</div>
 	</section>
 
 	<section class="pla-section-info">
-		<h3>Spawner Pokemon</h3>
+		<h3 data-i18n="">Spawner Pokemon</h3>
 		<ul class="pla-info-spawner" data-pla-info-spawner>
 		
 		</ul>
@@ -173,18 +173,18 @@
             </ul>
 			
 			<ul class="pla-results-ul">
-				<li><span class="pla-results-label">Shiny:</span> <span class="float -left" data-pla-results-shinysprite><span class="float -right" data-pla-results-shiny></span></span></li>
-				<li><span class="pla-results-label">Alpha:</span> <span data-pla-results-alpha></span></li>
+				<li><span class="pla-results-label" data-i18n="Shiny">Shiny:</span> <span class="float -left" data-pla-results-shinysprite><span class="float -right" data-pla-results-shiny></span></span></li>
+				<li><span class="pla-results-label" data-i18n="Alpha">Alpha:</span> <span data-pla-results-alpha></span></li>
 			</ul>
 
 			<ul class="pla-results-ul">
-				<li><span class="pla-results-adv">Advances To Shiny:</span> <span data-pla-results-adv></span></li>
+				<li><span class="pla-results-adv" data-i18n="Advances To Shiny">Advances To Shiny:</span> <span data-pla-results-adv></span></li>
 			</ul>
 
             <ul class="pla-results-ul">
-                <li><span class="pla-results-label">Nature:</span> <span data-pla-results-nature></span></li>
-                <li><span class="pla-results-label">Gender:</span> <span data-pla-results-gender></span></li>
-				<li><span class="pla-results-label">Rolls:</span> <span data-pla-results-rolls></span></li>
+                <li><span class="pla-results-label" data-i18n="Nature">Nature:</span> <span data-pla-results-nature></span></li>
+                <li><span class="pla-results-label" data-i18n="Gender">Gender:</span> <span data-pla-results-gender></span></li>
+				<li><span class="pla-results-label" data-i18n="Rolls">Rolls:</span> <span data-pla-results-rolls></span></li>
             </ul>
 
             <div class="pla-results-ivs-container">

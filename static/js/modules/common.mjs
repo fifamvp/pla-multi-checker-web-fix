@@ -499,6 +499,9 @@ const genderStrings = {
 };
 
 function normalizeGenederString(originalString) {
+  if (!originalString) {
+    return originalString
+  }
   let arr = originalString.split(' ');
   arr[0] = getLocText(arr[0]);
   return arr.join(' ');
