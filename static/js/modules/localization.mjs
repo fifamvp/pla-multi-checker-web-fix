@@ -147,14 +147,17 @@ function switchToNewLang(lang = 'en') {
     console.log('switchToNewLang ' + lang)
     currentLang = lang
 
-    updateContent(currentLang);
+    //updateContent(currentLang);
 
     // 保存用户选择
     localStorage.setItem(strLang, lang);
 
-    callbacks.forEach(element => {
-        element(lang);
-    });
+    // 刷新页面
+    window.location.reload(true);
+
+    // callbacks.forEach(element => {
+    //     element(lang);
+    // });
 }
 
 export function translateNode(inNode) {

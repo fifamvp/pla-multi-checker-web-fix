@@ -103,12 +103,12 @@
 		<h1 class="pla-heading"><span class="pla-heading-highlight">PLA</span> {{ self.title() }}</h1>
 		{% endif %}
 
-        <!-- <button class="language-toggle" id="language-toggle" title="Toggles language" aria-live="light"> -->
-            <select id="languageSwitcher">
-                <option value="en">English</option>
-                <option value="chs">中文</option>
-            </select>
-        <!-- </button> -->
+        <span>
+        <select id="languageSwitcher" style="width: 94px;">
+            <option value="en">English</option>
+            <option value="chs">中文</option>
+        </select>
+
         <button class="theme-toggle" id="theme-toggle" title="Toggles light and dark mode" aria-live="light">
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <g class="theme-toggle-light hidden">
@@ -127,6 +127,7 @@
                 </g>
             </svg>
         </button>
+        </span>
     </header>
 
     {% if bdsp %}
