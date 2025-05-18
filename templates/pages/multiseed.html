@@ -8,17 +8,62 @@
 	$(document).ready(function(e){
 		console.log("ready!")
 
+		function handlePokemonNames(originalString) {
+			originalString = String(originalString)
+			let poNames = [];
+			if (originalString.indexOf('/') > -1){
+				poNames.push(...originalString.split('/'));
+			}
+			else{
+				poNames.push(originalString);
+			}
+			for (let i = 0; i < poNames.length; i++){
+				poNames[i] = getPokemonName(poNames[i]);
+			}
+			return poNames.join('/');
+		}
+
+		function translateSpawner(originalString) {
+			let stringInBrace = '';
+			let idxOfBrace = originalString.indexOf('(');
+			let leftString = originalString;
+			if (idxOfBrace > 0){
+				stringInBrace = originalString.substring(idxOfBrace + 1);
+				stringInBrace = stringInBrace.replace(')', '');
+				leftString = originalString.substring(0, idxOfBrace);
+				if (stringInBrace.indexOf('/') > -1){
+					let addArr = stringInBrace.split(' ');
+					addArr[0] = handlePokemonNames(addArr[0]);
+					for (let i = 1; i < addArr.length; i++){
+						addArr[i] = getLocText(addArr[i]);
+					}
+					stringInBrace = '(' + addArr.join(' ') + ')';
+				}
+				else{
+					stringInBrace = '(' + getLocText(stringInBrace) + ')';
+				}
+			}
+			// 前两个是地名
+			let arr = leftString.split(' ');
+			let location = getLocText(arr[0] + ' ' + arr[1]);
+
+			// 宝可梦可能有多种情况
+			let rePoName = handlePokemonNames(arr[2]);
+
+			return location + ' ' + rePoName + stringInBrace;
+		}
+
 		function get_json_data(id, parent_id) {
 			console.log('#' + id)
 			var html_code = '';
 			$.getJSON('static/resources/groupids.json', function(data) {
 				console.log(id)
-				html_code += '<option value="49">Select Spawner:</option>';
+				html_code += '<option value="49">' + getLocText('Select Spawner') + ':</option>';
 				$.each(data, function(key, value) {
 					console.log("Value.parent_id");
 					console.log(value.parent_id);
 					if (value.parent_id == parent_id) {
-						html_code += '<option value="' + value.id + '">' + value.name + '</option>';
+						html_code += '<option value="' + value.id + '">' + translateSpawner(value.name) + '</option>';
 					}
 				});
 				$('#' + id).html(html_code);
@@ -35,19 +80,17 @@
     <div data-pla-messages></div>
 	
     <div class="tab">
-		<button class="tablinks" id="defaultOpen" data-pla-tab-for="Results">Results</button>
-		<button class="tablinks" data-pla-tab-for="Maps">Spawner Maps</button>
+		<button class="tablinks" id="defaultOpen" data-pla-tab-for="Results" data-i18n="">Results</button>
+		<button class="tablinks" data-pla-tab-for="Maps" data-i18n="">Spawner Maps</button>
 	</div>
 	
 	<div id="Results" class="tabcontent">
-        <div class="pla-results" data-pla-results>
-            Search to begin
-        </div>
+        <div class="pla-results" data-pla-results data-i18n="">Search to begin</div>
 	</div>
 	
 	<div id="Maps" class="tabcontent">
 		<section class="pla-section-spawnmap">
-		    <h3>Currently Supported Spawnpoints:</h3>
+		    <h3 data-i18n="SpwanPointsDesc">Currently Supported Spawnpoints:</h3>
 		
 			<button type="button" class="pla-button expandable-control">Obsidian Fieldlands</button>
 			<div class="expandable">
@@ -163,14 +206,14 @@
 		</div>
 		
 		<div class="pla-control">
-			<label for="groupID">Select Spawner:</label>
+			<label for="groupID" data-i18n="Select Spawner">Select Spawner:</label>
 			<select name="groupID" id="groupID" class="form-control">
-				<option value="49">Select Spawn Point</option>
+				<option value="49" data-i18n="Select Spawn Point">Select Spawn Point</option>
 			</select>
 		</div>
 		
 		<div class="pla-control-spaced">
-			<label for="nightToggle">Check Night Spawns:</label>
+			<label for="nightToggle" data-i18n="Check Night Spawns">Check Night Spawns:</label>
 			<input type="checkbox" id="nightToggle">
 		</div>
 		
@@ -197,7 +240,7 @@
 		</div>
         
         <div class="pla-control-actions">
-            <button class="pla-button pla-button-action" id="pla-button-checkmultiseed">Check Multi Spawner</button>
+            <button class="pla-button pla-button-action" id="pla-button-checkmultiseed" data-i18n="Check Multi Spawner">Check Multi Spawner</button>
         </div>
     </section>
 
@@ -234,8 +277,8 @@
             </ul>
 
             <ul class="pla-results-ul">
-                <li><span class="pla-results-label">Shiny:</span> <span class="float -left" data-pla-results-shinysprite><span class="float -right" data-pla-results-shiny></span></span></li>
-                <li><span class="pla-results-label">Alpha:</span> <span data-pla-results-alpha></span></li>
+                <li><span class="pla-results-label" data-i18n="Shiny">Shiny:</span> <span class="float -left" data-pla-results-shinysprite><span class="float -right" data-pla-results-shiny></span></span></li>
+                <li><span class="pla-results-label" data-i18n="Alpha">Alpha:</span> <span data-pla-results-alpha></span></li>
             </ul>
 
             <ul class="pla-results-ul">
@@ -243,13 +286,13 @@
             </ul>
             
 			<ul class="pla-results-ul">
-				<li><span class="pla-results-label">Advances:</span> <span data-pla-results-adv></span></li>
+				<li><span class="pla-results-label" data-i18n="Advances">Advances:</span> <span data-pla-results-adv></span></li>
 			</ul>
 
             <ul class="pla-results-ul">
-                <li><span class="pla-results-label">Nature:</span> <span data-pla-results-nature></span></li>
-                <li><span class="pla-results-label">Gender:</span> <span data-pla-results-gender></span></li>
-                <li><span class="pla-results-label">Rolls:</span> <span data-pla-results-rolls></span></li>
+                <li><span class="pla-results-label" data-i18n="Nature">Nature:</span> <span data-pla-results-nature></span></li>
+                <li><span class="pla-results-label" data-i18n="Gender">Gender:</span> <span data-pla-results-gender></span></li>
+                <li><span class="pla-results-label" data-i18n="Rolls">Rolls:</span> <span data-pla-results-rolls></span></li>
             </ul>
 
             <ul class="pla-results-ul">

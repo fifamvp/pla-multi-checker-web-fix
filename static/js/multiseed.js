@@ -19,6 +19,11 @@ import {
   initializeApp,
 } from "./modules/common.mjs";
 
+import {
+  getLocText,
+  translateNode,
+} from "./modules/localization.mjs";
+
 const resultTemplate = document.querySelector("[data-pla-results-template]");
 const resultsArea = document.querySelector("[data-pla-results]");
 
@@ -212,8 +217,10 @@ function showFilteredResults() {
   );
 
   if (filteredResults.length > 0) {
+    // resultsArea.innerHTML =
+    //   "<section><h3>D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.</h3></section>";
     resultsArea.innerHTML =
-      "<section><h3>D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.</h3></section>";
+      "<section><h3>" + getLocText('DespawnDesc') + "</h3></section>";
     filteredResults.forEach((result) => showResult(result));
   } else {
     showNoResultsFound();
@@ -224,7 +231,7 @@ function showResult(result) {
   const resultContainer = resultTemplate.content.cloneNode(true);
 
   const advances = result.path.length;
-  let pathdisplay = "Path To Target: &nbsp;";
+  let pathdisplay = getLocText("Path To Target") + ": &nbsp;";
 
   pathdisplay +=
     advances == 0
@@ -241,6 +248,8 @@ function showResult(result) {
   showPokemonInformation(resultContainer, result);
   showPokemonHiddenInformation(resultContainer, result);
   showPokemonIVs(resultContainer, result);
+
+  translateNode(resultContainer);
 
   resultsArea.appendChild(resultContainer);
 }

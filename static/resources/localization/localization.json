@@ -109,5 +109,19 @@
     "daynightcheck": { "chs": "是否为晚上?", "en": "Is Nighttime?" },
     "Spawner Pokemon": { "chs": "生成的宝可梦" },
     "Spawner": { "chs": "生成点" },
-    "Advances To Shiny": { "chs": "遇到闪光需要的刷新次数" }
+    "Advances To Shiny": { "chs": "遇到闪光需要的刷新次数" },
+    "maxDepth": { "chs": "最大刷新次数:", "en": "Max Number of Advances:" },
+    "maxAlive": { "chs": "生成数量:", "en": "Number of Spawns:" },
+    "Select Spawn Point": { "chs": "选择生成点" },
+    "Check Night Spawns": { "chs": "检查晚上生成" },
+    "Check Multi Spawner": { "chs": "计算" },
+    "Advances": { "chs": "刷新" },
+    "Night Only": { "chs": "只在晚上出现" },
+    "West Sea": { "chs": "西海" },
+    "Night": { "chs": "晚上" },
+    "Results": { "chs": "结果" },
+    "Search to begin": { "chs": "开始搜索" },
+    "Spawner Maps": { "chs": "生成点地图" },
+    "Path To Target": { "chs": "目标路径" },
+    "SpwanPointsDesc": { "chs": "目前支持的生成点:", "en": "Currently Supported Spawnpoints:" }
 }

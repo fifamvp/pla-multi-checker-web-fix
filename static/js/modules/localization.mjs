@@ -7,6 +7,7 @@ const strLang = 'preferredLang'
 let currentLang = localStorage.getItem(strLang) || 'en';
 let callbacks = []
 let bLocalizationLoaded = false
+let bPokemonNamesLoaded = false
 console.log('localization.mjs loaded')
 
 function sleep(time){
@@ -39,12 +40,17 @@ function initPokemonNames() {
                 'chs' : value['chs'],
             };
         });
+        bPokemonNamesLoaded = true;
     });
 }
 
 function initLocalizationModule() {
     initLocalizationFile();
     initPokemonNames();
+}
+
+function isInitialized() {
+    return bLocalizationLoaded && bPokemonNamesLoaded;
 }
 
 initLocalizationModule();
@@ -165,7 +171,7 @@ export function addLanguageSwitchCallback(callback) {
 async function waitForUpdateContent() {
     // wait until the localizaion file has been loaded
     let waitTime = 0;
-    while (!bLocalizationLoaded && waitTime < 5000){
+    while (!isInitialized() && waitTime < 5000){
         console.log('localization file is not ready.')
         waitTime+=100;
         await sleep(100);
