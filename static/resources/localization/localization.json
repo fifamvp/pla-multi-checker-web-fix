@@ -34,7 +34,8 @@
     "Chained With": { "chs": "同时" },
     "Nature": { "chs": "性格" },
     "Gender": { "chs": "性别" },
-    "Rolls": { "chs": "计算" },
+    "Rolls": { "chs": "计算轮次" },
+    "Path": { "chs": "路径" },
     "First Round Path": { "chs": "第一轮路径" },
     "Clear Round": { "chs": "清除剩余" },
     "Revisit": { "chs": "重新访问" },
@@ -123,5 +124,6 @@
     "Search to begin": { "chs": "开始搜索" },
     "Spawner Maps": { "chs": "生成点地图" },
     "Path To Target": { "chs": "目标路径" },
-    "SpwanPointsDesc": { "chs": "目前支持的生成点:", "en": "Currently Supported Spawnpoints:" }
+    "SpwanPointsDesc": { "chs": "目前支持的生成点:", "en": "Currently Supported Spawnpoints:" },
+    "No results found": { "chs": "未找到结果" }
 }

@@ -387,7 +387,7 @@ export function showNoResultsFound() {
     resultsArea.innerHTML = "";
     const message = document.createElement("p");
     message.classList.add("pla-results-message");
-    message.textContent = "No results found";
+    message.textContent = getLocText("No results found");
     resultsArea.appendChild(message);
   }
 }
@@ -398,7 +398,7 @@ export function showNoResultsFoundSWSH() {
     resultsArea.innerHTML = "";
     const message = document.createElement("p");
     message.classList.add("swsh-results-message");
-    message.textContent = "No results found";
+    message.textContent = getLocText("No results found");
     resultsArea.appendChild(message);
   }
 }

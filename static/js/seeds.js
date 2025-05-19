@@ -212,12 +212,12 @@ function showFilteredResults() {
 }
 
 function translateIndex(originalIndex) {
-  let targetReplaced = ['First Round Path','Clear Round','Revisit','Bonus Path','Bonus','Initial Spawn']
+  let targetReplaced = ['First Round Path','Clear Round','Revisit','Bonus Path','Bonus','Initial Spawn','Path'];
   let newString = originalIndex;
   for (let beReplaced of targetReplaced){
-    newString = newString.replaceAll(beReplaced, getLocText(beReplaced))
+    newString = newString.replaceAll(beReplaced, getLocText(beReplaced));
   }
-  return newString
+  return newString;
 }
 
 function showResult(result) {

@@ -235,7 +235,7 @@ function showResult(result) {
 
   pathdisplay +=
     advances == 0
-      ? "<input type='checkbox'>&nbsp; Initial Spawn"
+      ? "<input type='checkbox'>&nbsp; " + getLocText("Initial Spawn")
       : result.path
           .map((step) => `<input type='checkbox'>&nbsp;D${step}`)
           .join(" &emsp;");
