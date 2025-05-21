@@ -212,7 +212,7 @@ function showFilteredResults() {
 }
 
 function translateIndex(originalIndex) {
-  let targetReplaced = ['First Round Path','Clear Round','Revisit','Bonus Path','Bonus','Initial Spawn','Path'];
+  let targetReplaced = ['First Round Path','Clear Round','Revisit','Bonus Path','Bonus','Initial Spawn','Path','First Round '];
   let newString = originalIndex;
   for (let beReplaced of targetReplaced){
     newString = newString.replaceAll(beReplaced, getLocText(beReplaced));
@@ -234,6 +234,9 @@ function showResult(result) {
     indexprefix =
       getLocText("Multiple Shiny Path (Complete for more than one Shiny)") + ":  <br>" +
       result.index;
+    for (let i = 0; i < result.chains.length; i++){
+      result.chains[i] = translateIndex(result.chains[i]);
+    }
     chainprefix = "<br>" + result.chains;
     result.multi = true;
   }

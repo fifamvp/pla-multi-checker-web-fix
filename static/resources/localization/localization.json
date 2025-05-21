@@ -37,6 +37,7 @@
     "Rolls": { "chs": "计算轮次" },
     "Path": { "chs": "路径" },
     "First Round Path": { "chs": "第一轮路径" },
+    "First Round ": { "chs": "第一轮" },
     "Clear Round": { "chs": "清除剩余" },
     "Revisit": { "chs": "重新访问" },
     "Bonus Path": { "chs": "第二轮路径" },
