@@ -163,7 +163,8 @@ function switchToNewLang(lang = 'en') {
 export function translateNode(inNode) {
     inNode.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        element.textContent = getLocTextWithExtraMarks(key, element.textContent);
+        // Cannot use textContent here for some nested span
+        element.innerHTML = getLocTextWithExtraMarks(key, element.innerHTML);
     });
 }
 
