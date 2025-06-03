@@ -209,8 +209,27 @@ function handleSpecialPokemonName(originalString) {
     // AlphaPikachu
     // Alpha Pikachu
     // Alpha XXX-1
+    // Alpha Mime Jr.
 
-    let strings = originalString.split(/-| /);
+    let pendingStr = originalString;
+    let addedStr = '';
+    if (originalString.indexOf('-') > -1){
+        let pendings = originalString.split('-');
+        pendingStr = pendings[0];
+        addedStr = pendings[1];
+    }
+
+    let strings = [];
+    const delimiter = ' ';
+    const index = pendingStr.indexOf(delimiter);
+    if (index == -1){
+        strings.push(pendingStr);
+    }
+    else{
+        strings.push(pendingStr.substring(0, index));
+        strings.push(pendingStr.substring(index + delimiter.length));
+    }
+
     let result = '';
     strings.forEach(str => {
         let loc = getLocText(str);
@@ -221,6 +240,10 @@ function handleSpecialPokemonName(originalString) {
         }
         result += (!isNaN(loc) ? '-':' ') + loc;
     });
+
+    if (addedStr.length > 0){
+        result += '-' + addedStr;
+    }
 
     result = result.trim();
     return result;
