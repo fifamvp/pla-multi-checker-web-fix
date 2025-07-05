@@ -133,7 +133,7 @@ function createPokemonRow(pokemon) {
   // radios[1].addEventListener("change", saveResearch);
   // radios[2].addEventListener("change", saveResearch);
 
-  researchRows.set(pokemon.species, row.querySelector(".pla-research-row"));
+  researchRows.set(getPokemonName(pokemon.species), row.querySelector(".pla-research-row"));
   researchRadios.set(pokemon.species, [radios[0], radios[1], radios[2]]);
   translateNode(row);
   researchTable.appendChild(row);
