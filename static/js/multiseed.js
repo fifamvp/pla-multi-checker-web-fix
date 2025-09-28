@@ -22,10 +22,12 @@ import {
 import {
   getLocText,
   translateNode,
+  getPokemonName,
 } from "./modules/localization.mjs";
 
 const resultTemplate = document.querySelector("[data-pla-results-template]");
 const resultsArea = document.querySelector("[data-pla-results]");
+const mapSpawnsArea = document.querySelector("[data-pla-info-spawner]");
 
 // options
 const inputSeed = document.getElementById("inputseed");
@@ -47,6 +49,7 @@ const mmoSpeciesText = document.getElementById("mmoSpeciesFilter");
 distShinyCheckbox.addEventListener("change", setFilter);
 distAlphaCheckbox.addEventListener("change", setFilter);
 //mmoSpeciesText.addEventListener("input", setFilter);
+groupID.addEventListener("change", setGroupID);
 
 // actions
 const checkMultiButton = document.getElementById("pla-button-checkmultiseed");
@@ -180,6 +183,42 @@ function filter(
   }*/
 
   return true;
+}
+
+function setGroupID(event) {
+  const sumSlot = (list) => list.reduce((sum, item) => sum + (item.slot || 0), 0);
+  const calProbablity = (slot, sum) => sum != 0 ? (slot / sum * 100).toFixed(2) + "%": "???";
+  mapSpawnsArea.innerHTML = "";
+  // console.log("setGroupID")
+  // console.log(groupID.value)
+  $.getJSON("static/resources/" + "multi-es.json", function (data) {
+    var breakloop = false;
+    $.each(data, function (key, value) {
+      if (!breakloop && key == groupID.value) {
+        breakloop = true;
+        let sum = sumSlot(value);
+        // console.log(value);
+        // sort by slot
+        const result = Object.fromEntries(
+            [...value]
+                .sort((a, b) => {
+                    const keyA = a.alpha ? `Alpha ${a.species}` : a.species;
+                    const keyB = b.alpha ? `Alpha ${b.species}` : b.species;
+                    return b.slot - a.slot || keyA.localeCompare(keyB);
+                })
+                .map(item => [item.alpha ? `Alpha ${item.species}` : item.species, item.slot])
+        );
+        // console.log(result);
+
+        $.each(result, function (pokemonName, slot) {
+          let locListItem = document.createElement("li");
+          locListItem.textContent = getPokemonName(pokemonName) + " " + calProbablity(slot, sum);
+          // console.log(locListItem.innerText);
+          mapSpawnsArea.appendChild(locListItem);
+        });
+      }
+    });
+  });
 }
 
 function getOptions() {

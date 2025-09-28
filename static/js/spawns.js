@@ -71,6 +71,10 @@ function setFilter(event) {
 }
 
 function setSpawners(event) {
+  const isValidNumber = (value) => typeof value === 'number' && isFinite(value);
+  const sumSlot = (obj) => Object.values(obj).reduce((sum, val) => isValidNumber(val) ? sum + val : sum, 0);
+  const calProbablity = (slot, sum) => sum != 0 ? (slot / sum * 100).toFixed(2) + "%": "???";
+  const sortSpecies = (species) => Object.fromEntries(Object.entries(species).sort(([aKey, aValue], [bKey, bValue]) => bValue - aValue || aKey.localeCompare(bKey)));
   mapSpawnsArea.innerHTML = "";
   $.getJSON("static/resources/" + mapName.value + ".json", function (data) {
     $.each(data, function (key, value) {
@@ -88,9 +92,10 @@ function setSpawners(event) {
             !breakloop
           ) {
             breakloop = true;
+            species = sortSpecies(species);
             $.each(species, function (pokemon, slot) {
               let locListItem = document.createElement("li");
-              locListItem.textContent = getPokemonName(pokemon);
+              locListItem.textContent = getPokemonName(pokemon) + " " + calProbablity(slot, sumSlot(species));
               mapSpawnsArea.appendChild(locListItem);
             });
           } else if (
@@ -101,11 +106,12 @@ function setSpawners(event) {
             console.log(timeweather);
             console.log(species);
             breakloop = true;
+            species = sortSpecies(species);
             $.each(species, function (pokemon, slot) {
               console.log(pokemon);
               console.log(slot);
               let locListItem = document.createElement("li");
-              locListItem.textContent = getPokemonName(pokemon);
+              locListItem.textContent = getPokemonName(pokemon) + " " + calProbablity(slot, sumSlot(species));
               console.log("loclistitem innertext");
               console.log(locListItem.innerText);
               mapSpawnsArea.appendChild(locListItem);
