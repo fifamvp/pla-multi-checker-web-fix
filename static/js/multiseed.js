@@ -92,9 +92,12 @@ function setupPreferenceSaving() {
   /*distShinyOrAlphaCheckbox.addEventListener("change", (e) =>
     saveBoolToStorage("mmoShinyOrAlpaFilter", e.target.checked)
   );*/
-  nightCheck.addEventListener("change", (e) =>
-    saveBoolToStorage("nightCheck", e.target.checked)
-  );
+  nightCheck.addEventListener("change", (e) =>{ 
+      saveBoolToStorage("nightCheck", e.target.checked)
+      if (groupID.value > 0){
+        setGroupID();
+      }
+  });
 }
 
 function setupTabs() {
@@ -193,8 +196,13 @@ function setGroupID(event) {
   // console.log(groupID.value)
   $.getJSON("static/resources/" + "multi-es.json", function (data) {
     var breakloop = false;
+    let targetId = nightCheck.checked ? groupID.value + "n" : groupID.value;
+    if (!data.hasOwnProperty(targetId)){
+      targetId = groupID.value;
+      console.log("No night specific pokemon: " + groupID.value);
+    }
     $.each(data, function (key, value) {
-      if (!breakloop && key == groupID.value) {
+      if (!breakloop && key == targetId) {
         breakloop = true;
         let sum = sumSlot(value);
         // console.log(value);

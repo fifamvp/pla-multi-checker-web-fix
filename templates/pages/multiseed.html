@@ -30,17 +30,21 @@
 			if (idxOfBrace > 0){
 				stringInBrace = originalString.substring(idxOfBrace + 1);
 				stringInBrace = stringInBrace.replace(')', '');
+				let original = stringInBrace;
 				leftString = originalString.substring(0, idxOfBrace);
-				if (stringInBrace.indexOf('/') > -1){
+				let fullLoc = getLocText(stringInBrace);
+				if (fullLoc === stringInBrace){
 					let addArr = stringInBrace.split(' ');
-					addArr[0] = handlePokemonNames(addArr[0]);
-					for (let i = 1; i < addArr.length; i++){
-						addArr[i] = getLocText(addArr[i]);
+					if (addArr.length > 0){
+						addArr[0] = handlePokemonNames(addArr[0]);
+						for (let i = 1; i < addArr.length; i++){
+							addArr[i] = getLocText(addArr[i]);
+						}
+						stringInBrace = '(' + addArr.join(' ') + ')';
 					}
-					stringInBrace = '(' + addArr.join(' ') + ')';
 				}
 				else{
-					stringInBrace = '(' + getLocText(stringInBrace) + ')';
+					stringInBrace = '(' + fullLoc + ')';
 				}
 			}
 			// 前两个是地名
@@ -91,7 +95,8 @@
 	<div id="Maps" class="tabcontent">
 		<section class="pla-section-spawnmap">
 		    <h3 data-i18n="SpwanPointsDesc">Currently Supported Spawnpoints:</h3>
-		
+			<div data-i18n="SpwanPointsDesc-1">• 3-3 means that the point spawns 3 pokemons at the same time.</div>
+			<div data-i18n="SpwanPointsDesc-2">• N means that the pokemon is only spawned at night.</div>
 			<button type="button" class="pla-button expandable-control">Obsidian Fieldlands</button>
 			<div class="expandable">
 			<ul class="pla-results-ul">
@@ -122,6 +127,15 @@
 				<li><img src="static/img/spawnpoint-staraptor.png"></li>
 				<li><img src="static/img/spawnpoint-beautifly.png"></li>
 			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-field-bidoof.png"></li>
+				<li><img src="static/img/spawnpoint-field-geodude+zubat.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<!-- <li><img src="static/img/spawnpoint-field-starly.png"></li> 这个点不会生成头目-->
+				<li><img src="static/img/spawnpoint-field-staravia+drifblim.png"></li>
+				<li><img src="static/img/spawnpoint-field-luxio+luxray.png"></li>
+			</ul>
 			</div>
 			
 			<button type="button" class="pla-button expandable-control">Crimson Mirelands</button>
@@ -139,7 +153,11 @@
 				<li><img src="static/img/spawnpoint-kricketune.png"></li>
 			</ul>
 			<ul class="pla-results-ul">
-				<li><img src="static/img/spawnpoint-paras.png"></li>
+				<li><img src="static/img/spawnpoint-mire-geodude+gravelar+bat.png"></li>
+				<li><img src="static/img/spawnpoint-mire-geodude+graveler+guisi.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-paras.png" style="width: 75%; height: auto;"></li>
 			</ul>
 			</div>
 			
@@ -154,15 +172,36 @@
 				<li><img src="static/img/spawnpoint-qwilfish.png"></li>
 			</ul>
 			<ul class="pla-results-ul">
-				<li><img src="static/img/spawnpoint-tentacool.png"></li>
-				<li><img src="static/img/spawnpoint-tentacool-2.png"></li>
+				<li><img src="static/img/spawnpoint-coast-qwilfish-2-2.png"></li>
+				<li><img src="static/img/spawnpoint-coast-qwilfish-3-3-b.png"></li>
 			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-tentacool.png"></li>
+				<li><img src="static/img/spawnpoint-coast-tentacool-3-3-c.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-coast-tentacool-2-2.png"></li>
+				<li><img src="static/img/spawnpoint-coast-tentacool-3-3-b.png"></li>
 			</div>
 			
 			<button type="button" class="pla-button expandable-control">Coronet Highlands</button>
 			<div class="expandable">
 			<ul class="pla-results-ul">
 				<li><img src="static/img/spawnpoint-teddiursa.png"></li>
+				<li><img src="static/img/spawnpoint-high-bronzor.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-high-gligar.png"></li>
+				<li><img src="static/img/spawnpoint-high-hippopotas-3-3.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-high-paras+zubat+golbat.png"></li>
+				<li><img src="static/img/spawnpoint-high-paras+golbat.png"></li>
+			</ul>
+			<ul class="pla-results-ul">
+				<li><img src="static/img/spawnpoint-high-luxio+luxray.png" style="width: 75%; height: auto;"></li>
+			</ul>
+			<ul class="pla-results-ul">
 			</ul>
 			</div>
 			

@@ -126,5 +126,7 @@
     "Spawner Maps": { "chs": "生成点地图" },
     "Path To Target": { "chs": "目标路径" },
     "SpwanPointsDesc": { "chs": "目前支持的生成点:", "en": "Currently Supported Spawnpoints:" },
+    "SpwanPointsDesc-1": { "chs": "• 3-3意味着这个点会同时生成3只宝可梦", "en": "• 3-3 means that the point spawns 3 pokemons at the same time." },
+    "SpwanPointsDesc-2": { "chs": "• N意味着这只宝可梦只会在晚上生成", "en": "• N means that the pokemon is only spawned at night." },
     "No results found": { "chs": "未找到结果" }
 }

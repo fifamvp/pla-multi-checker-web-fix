@@ -75,6 +75,21 @@
 		"parent_id": 0
 	},
 	{
+		"id": "479",
+		"name": "Obsidian Fieldlands Geodude/Zubat",
+		"parent_id": 0
+	},
+	{
+		"id": "409",
+		"name": "Obsidian Fieldlands Staravia (Drifblim @ Night)",
+		"parent_id": 0
+	},
+	{
+		"id": "448",
+		"name": "Obsidian Fieldlands Luxio/Luxray",
+		"parent_id": 0
+	},
+	{
 		"id": "50",
 		"name": "Crimson Mirelands Ralts/Budew/Roselia",
 		"parent_id": 0
@@ -110,6 +125,16 @@
 		"parent_id": 0
 	},
 	{
+		"id": "514",
+		"name": "Crimson Mirelands Geodude/Graveler/Zubat/Golbat",
+		"parent_id": 0
+	},
+	{
+		"id": "553",
+		"name": "Crimson Mirelands Geodude/Graveler/Gastly/Haunter",
+		"parent_id": 0
+	},
+	{
 		"id": "161",
 		"name": "Cobalt Coastlands Murkrow (Night Only)",
 		"parent_id": 0
@@ -137,6 +162,36 @@
 	{
 		"id": "56",
 		"name": "Coronet Highlands Teddiursa/Ursaring",
+		"parent_id": 0
+	},
+	{
+		"id": "841",
+		"name": "Coronet Highlands Bronzor/Bronzong",
+		"parent_id": 0
+	},
+	{
+		"id": "819",
+		"name": "Coronet Highlands Luxio/Luxray",
+		"parent_id": 0
+	},
+	{
+		"id": "824",
+		"name": "Coronet Highlands Paras/Parasect/Zubat/Golbat",
+		"parent_id": 0
+	},
+	{
+		"id": "835",
+		"name": "Coronet Highlands Paras/Parasect/Golbat",
+		"parent_id": 0
+	},
+	{
+		"id": "821",
+		"name": "Coronet Highlands Hippopotas/Hippowdon",
+		"parent_id": 0
+	},
+	{
+		"id": "830",
+		"name": "Coronet Highlands Gligar",
 		"parent_id": 0
 	},
 	{
