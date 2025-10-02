@@ -77,6 +77,7 @@
     "Alpha!": { "chs": "头目" },
     "Not Alpha": { "chs": "非头目" },
     "DespawnDesc": { "chs": "D = 消除. 通过和多只（攻击性）宝可梦战斗或者惊吓（胆小）宝可梦来同时消除多只", "en": "D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon."},
+    "DespawnDescMultis": { "chs": "D = 消除. 通过和多只（攻击性）宝可梦战斗或者惊吓（胆小）宝可梦来消除多只（不需要同时）", "en": "D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.(No need at the same time)"},
     "SetLevelToAll": { "chs": "给所有宝可梦设置研究等级:", "en": "Set the research level for all Pokémon to:" },
     "Base Level": { "chs": "基础等级" },
     "Level 10": { "chs": "等级 10" },

@@ -267,7 +267,7 @@ function showFilteredResults() {
     // resultsArea.innerHTML =
     //   "<section><h3>D = Despawn. Despawn Multiple Pokemon by either Multibattles (for aggressive) or Scaring (for skittish) pokemon.</h3></section>";
     resultsArea.innerHTML =
-      "<section><h3>" + getLocText('DespawnDesc') + "</h3></section>";
+      "<section><h3>" + getLocText('DespawnDescMultis') + "</h3></section>";
     filteredResults.forEach((result) => showResult(result));
   } else {
     showNoResultsFound();
