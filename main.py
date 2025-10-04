@@ -23,7 +23,7 @@ config = json.load(open(ROOT_PATH + "config.json"))
 
 if config["SeedCheckOnly"]:
     print("Seed Check only mode! Note: You will not be able to use MMO checker or Distiortion Checker!")
-else:
+elif config["APP_MODE"] != "WEB":
     reader = NXReader(config["IP"], usb_connection=config["USB"])
     
     def signal_handler(signal, advances): #CTRL+C handler
